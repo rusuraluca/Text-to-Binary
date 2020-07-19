@@ -1,0 +1,64 @@
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+
+$w: 750;
+$h: 560;
+$dark: #16161D;
+$light: #f8f8f8;
+$green: #00FF99;
+
+html, body {overflow: hidden}
+
+body {background-color: #fafafa; font-family: 'Droid Sans Mono', sans-serif}
+
+.wrapper {width: #{$w}px; height: #{$h}px; margin: -#{$h/2}px 0 0 -#{$w/2}px; position: absolute; top: 50%; left: 50%; box-shadow: 0 1px 8px rgba(0, 0, 0, .1)}
+
+.content {&::after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}}
+.face {width: 60px; height: 60px; margin: 35px auto 15px}
+
+.human, .machine {float: left; width: 50%; line-height: 1.5;
+  .io {@include box-sizing(border-box); padding: 20px 10px 30px 20px; height: #{$h - 110}px; display: block; outline: none; overflow-y: scroll; margin: 0 10px;
+    -webkit-mask:
+      -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 1) 30px, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%),
+      -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 1) 30px, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    &::-webkit-scrollbar {width: 5px}
+    &::-webkit-scrollbar-thumb {border-radius: 3px}
+  }
+  &:after{content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0}
+}
+
+.human {background-color: #fff; color: $dark; font-size: 16px; border-radius: 3px 0 0 3px;
+  .face {
+    svg {width: 44px; height: 40px; position: relative; left: 8px; top: 8px;
+      .f {stroke: #ccc; stroke-width: 3px; fill: none;}
+      .eye, .mouth, .smile {fill: #ccc}
+    }
+    &.active {
+      .smile {display: none}
+      .f {stroke: #666}
+      .eye, .mouth {fill: #666}
+    }
+  }
+  .io {&::-webkit-scrollbar-thumb {background-color: rgba(0, 0, 0, 0.1);}}
+}
+
+.machine {background-color: #1a1a1a; color: $green; border-radius: 0 3px 3px 0; text-shadow: 0 0 1px transparentize(#fff, .3), 0 0 10px transparentize($green, .5);
+  .face {
+    svg {width: 54px; height: 57px; position: relative; left: 2px; top: 1px;
+      .f, .e, .eye {stroke: #666; stroke-width: 3px;}
+      .s {fill: #666;}
+      .signal {fill: transparentize($green, .8)}
+    }
+    &.active {
+      .signal {fill: #00ff99}
+      .f, .e, .eye {stroke: #999}
+      .s {fill: #999;}
+    }
+  }
+  .io {font-size: 11px;
+    &::-webkit-scrollbar-thumb {background-color: rgba(255, 255, 255, 0.15);}
+  }
+}
+
+footer {font-size: 11px; color: #ccc; text-shadow: 0 1px 0 white; margin-top: 15px}
