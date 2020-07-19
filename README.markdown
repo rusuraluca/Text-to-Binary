@@ -1,4 +1,4 @@
 # Text to Binary
 
-A text to binary converter.
+A text to binary converter
 
